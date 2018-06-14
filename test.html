@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 700px;
+            height: 600px;
+            margin: 50px auto;
+            background-color: blue;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        // $(document).ready(function () {
+        //     $("button:eq(0)").click(function () {
+        //         $("body").css("backgroundColor", "");
+        //     });
+        //     $("button:eq(1)").click(function () {
+        //         $("body").css("backgroundColor", "black");
+        //     });
+        // });
+
+        $(function () {
+            var btnArr = document.getElementsByTagName("button");
+            $(btnArr[0]).click(function () {
+                $("body").get(0).style.backgroundColor = "";
+
+            });
+            $(btnArr[1]).click(function () {
+                $("body")[0].style.backgroundColor = "black";
+
+            });
+        });
+    </script>
+</head>
+<body>
+<button>開燈</button>
+<button>關燈</button>
+<div></div>
+</body>
+</html>
