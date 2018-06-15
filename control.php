@@ -17,21 +17,122 @@
 
   <script type="text/javascript">
     $(document).ready(function () {
-      //////
-      $("on").click(function () {
-        $.get("GetData_relay.php", { relay1: "1" });
-      });
-
-      $("off").click(function () {
-        $.get("GetData_relay.php", { relay1: "0" });
-      });
-
-	  switchEvent("#relay1",function(){$.get("GetData_relay.php", { relay1: "1" });},function(){$.get("GetData_relay.php", { relay1: "0" });});
-	  switchEvent("#relay2",function(){$.get("GetData_relay.php", { relay2: "1" });},function(){$.get("GetData_relay.php", { relay2: "0" });});
-	  switchEvent("#relay3",function(){$.get("GetData_relay.php", { relay3: "1" });},function(){$.get("GetData_relay.php", { relay3: "0" });});
-	  switchEvent("#relay4",function(){$.get("GetData_relay.php", { relay4: "1" });},function(){$.get("GetData_relay.php", { relay4: "0" });});
-	  switchEvent("#relay5",function(){$.get("GetData_relay.php", { relay5: "1" });},function(){$.get("GetData_relay.php", { relay5: "0" });});
-	  switchEvent("#relay6",function(){$.get("GetData_relay.php", { relay6: "1" });},function(){$.get("GetData_relay.php", { relay6: "0" });});
+      //判斷當開關作動時要做的事情
+	  //relay1	
+	  switchEvent("#relay1",
+	  function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay1: "1"},
+			  success: function(){
+				  honeySwitch.showOn("#relay1");
+				  }});},
+	  function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay1: "0"},
+				success: function(){
+					honeySwitch.showOff("#relay1");
+					}});}
+		);
+	  //relay2
+	  switchEvent("#relay2",
+	  function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay2: "1"},
+			  success: function(){
+				  honeySwitch.showOn("#relay2");
+				  }});},
+	  function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay2: "0"},
+				success: function(){
+					honeySwitch.showOff("#relay2");
+					}});}
+		);
+		//relay3
+		switchEvent("#relay3",
+	  	function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay3: "1"},
+			  success: function(){
+				  honeySwitch.showOn("#relay3");
+				  }});},
+	  	function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay3: "0"},
+				success: function(){
+					honeySwitch.showOff("#relay3");
+					}});}
+		);
+		//relay4
+		switchEvent("#relay4",
+	  	function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay4: "1"},
+			  success: function(){
+				  honeySwitch.showOn("#relay4");
+				  }});},
+	  	function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay4: "0"},
+				success: function(){
+					
+					}});}
+		);
+		//relay5
+		switchEvent("#relay5",
+	  	function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay5: "1"},
+			  success: function(){
+				  
+				  }});},
+	  	function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay5: "0"},
+				success: function(){
+					
+					}});}
+		);
+		//relay6
+		switchEvent("#relay6",
+	  	function(){
+		  $.ajax({
+			  type: "GET",
+			  url: "GetData_relay.php",
+			  data: {relay6: "1"},
+			  success: function(){
+				  
+				  }});},
+	  	function(){
+			$.ajax({
+				type: "GET",
+				url: "GetData_relay.php",
+				data: {relay6: "0"},
+				success: function(){
+					
+					}});}
+		);
+	  
 
 
 
@@ -160,7 +261,7 @@
 		  }]
     });
 
-  //水中溫度
+   //水中溫度
 	var chart4 = Highcharts.chart('t_water', {
 		  yAxis: {
 				min: 20,
@@ -188,42 +289,48 @@
 
     // 定時更新
     setInterval(function () {
-		//JSON取Relay值
+		//ajax取relay狀態
 		var relay1_state,relay2_state,relay3_state,relay4_state,relay5_state;
-		$.getJSON("data/relay.txt", function (relay) {
-			relay1_state = parseInt(relay.relay1);
-			relay2_state = parseInt(relay.relay2);
-			relay3_state = parseInt(relay.relay3);
-			relay4_state = parseInt(relay.relay4);
-			relay5_state = parseInt(relay.relay5);
-			relay6_state = parseInt(relay.relay6);
+		$.ajax({
+    		type: "GET",
+    		url: "data/relay.txt",
+			dataType:"json",
+    		success: function(relay){
+				relay1_state = parseInt(relay.relay1);
+				relay2_state = parseInt(relay.relay2);
+				relay3_state = parseInt(relay.relay3);
+				relay4_state = parseInt(relay.relay4);
+				relay5_state = parseInt(relay.relay5);
+				relay6_state = parseInt(relay.relay6);
 
-			if(relay1_state == 1){honeySwitch.showOn("#relay1");}else{honeySwitch.showOff("#relay1");}
-			if(relay2_state == 1){honeySwitch.showOn("#relay2");}else{honeySwitch.showOff("#relay2");}
-			if(relay3_state == 1){honeySwitch.showOn("#relay3");}else{honeySwitch.showOff("#relay3");}
-			if(relay4_state == 1){honeySwitch.showOn("#relay4");}else{honeySwitch.showOff("#relay4");}
-			if(relay5_state == 1){honeySwitch.showOn("#relay5");}else{honeySwitch.showOff("#relay5");}
-			if(relay6_state == 1){honeySwitch.showOn("#relay6");}else{honeySwitch.showOff("#relay6");}
-
-		});
-
-		//JSON取溫溼度值
-		var h_air,t_air;heat_air,t_water;
-		$.getJSON("data/thr.txt", function (thr) { //讀取json資料,把資料放進data裡
-			var point;
-			h_air = parseFloat(thr.h_air);
-		    t_air = parseFloat(thr.t_air);
-			heat_air = parseFloat(thr.heat_air);
-			t_water = parseFloat(thr.t_water);
-
-
-			if (chart1) {point = chart1.series[0].points[0];point.update(h_air);}
-			if (chart2) {point = chart2.series[0].points[0];point.update(t_air);}
-			if (chart3) {point = chart3.series[0].points[0];point.update(heat_air);}
-			if (chart4) {point = chart4.series[0].points[0];point.update(t_water);
+				if(relay1_state == 1){honeySwitch.showOn("#relay1");}else{honeySwitch.showOff("#relay1");}
+				if(relay2_state == 1){honeySwitch.showOn("#relay2");}else{honeySwitch.showOff("#relay2");}
+				if(relay3_state == 1){honeySwitch.showOn("#relay3");}else{honeySwitch.showOff("#relay3");}
+				if(relay4_state == 1){honeySwitch.showOn("#relay4");}else{honeySwitch.showOff("#relay4");}
+				if(relay5_state == 1){honeySwitch.showOn("#relay5");}else{honeySwitch.showOff("#relay5");}
+				if(relay6_state == 1){honeySwitch.showOn("#relay6");}else{honeySwitch.showOff("#relay6");}
 			}
+ 		 });
+		//ajax讀取thr狀態
+		var h_air,h_air,t_air;heat_air,t_water;
+		$.ajax({
+    		type: "GET",
+    		url: "data/thr.txt",
+			dataType:"json",
+    		success: function(thr){
+				var point;
+				h_air = parseFloat(thr.h_air);
+		    	t_air = parseFloat(thr.t_air);
+				heat_air = parseFloat(thr.heat_air);
+				t_water = parseFloat(thr.t_water);
 
-		});
+				if (chart1) {point = chart1.series[0].points[0];point.update(h_air);}
+				if (chart2) {point = chart2.series[0].points[0];point.update(t_air);}
+				if (chart3) {point = chart3.series[0].points[0];point.update(heat_air);}
+				if (chart4) {point = chart4.series[0].points[0];point.update(t_water);}
+			}
+ 		 });
+		////
 
 
 	}, 1800);
@@ -267,8 +374,7 @@ echo $h_air, $t_air, $heat_air, $t_water, $datetime;
 
 
   <h2>測試頁面</h2>
-  <!--<on>開</on>
-  <off>關</off>-->
+
   <div id="1" style="width: 800px; height: 200px; margin: 0 auto">
     <div id="h_air" style="width: 200px; height: 200px; float: left"></div>
 	<div id="t_air" style="width: 200px; height: 200px; float: left"></div>
