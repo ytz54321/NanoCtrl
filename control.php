@@ -5,6 +5,7 @@
   <title>魚缸生態主控台</title>
 
   <link rel="stylesheet" href="css/honeySwitch.css">
+  <link rel="stylesheet" href="css/main.css">
 
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/highcharts-more.js"></script>
@@ -12,6 +13,7 @@
   <script type="text/javascript" src="js/solid-gauge.js"></script>
   <script type="text/javascript" src="js/honeySwitch.js"></script>
 
+  
 
 
 
@@ -138,8 +140,9 @@
 
 	  Highcharts.setOptions({
 		    chart: {
-				  type: 'solidgauge'
-		    },
+				type: 'solidgauge',
+				backgroundColor:'#00000000',
+			},
 		    title: null,
 		    pane: {
 			  	center: ['50%', '85%'],
@@ -175,21 +178,26 @@
 		  },
 		  plotOptions: {
 				solidgauge: {
-						dataLabels: {
-								y: 5,
-								borderWidth: 0,
-								useHTML: true
-						}
+					dataLabels: {
+						y: 5,
+						borderWidth: 0,
+						useHTML: true
+						
+					}
 				}
 		  }
     });
     //空氣濕度
-      var chart1 = Highcharts.chart('h_air', {
+    var chart1 = Highcharts.chart('h_air', { 
 		  yAxis: {
 				min: 0,
 				max: 100,
 				title: {
-					text: '空氣濕度'
+					text: '空氣濕度',
+					style:{
+						fontSize:'25px',
+						color:'#ffffff'
+					}					
 				}
 		  },
 		  credits: {
@@ -200,7 +208,7 @@
 				data: [100],
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
-					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
 					'<span style="font-size:10px;color:silver">%</span></div>'
 				},
 				tooltip: {
@@ -215,7 +223,11 @@
 				min: 20,
 				max: 40,
 				title: {
-					text: '空氣溫度'
+					text: '空氣溫度',
+					style:{
+						fontSize:'25px',
+						color:'#ffffff'
+					}
 				}
 		  },
 		  credits: {
@@ -226,7 +238,7 @@
 				data: [40],
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
-					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
 					'<span style="font-size:10px;color:silver">度</span></div>'
 				},
 				tooltip: {
@@ -241,7 +253,11 @@
 				min: 20,
 				max: 40,
 				title: {
-					text: '體感溫度'
+					text: '體感溫度',
+					style:{
+						fontSize:'25px',
+						color:'#ffffff'
+					}
 				}
 		  },
 		  credits: {
@@ -252,7 +268,7 @@
 				data: [40],
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
-					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
 					'<span style="font-size:10px;color:silver">度</span></div>'
 				},
 				tooltip: {
@@ -266,8 +282,13 @@
 		  yAxis: {
 				min: 20,
 				max: 40,
+				
 				title: {
-					text: '水中溫度'
+					text: '水中溫度',
+					style:{
+						fontSize:'25px',
+						color:'#ffffff'
+					}
 				}
 		  },
 		  credits: {
@@ -278,7 +299,7 @@
 				data: [40],
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
-					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
 					'<span style="font-size:10px;color:silver">度</span></div>'
 				},
 				tooltip: {
@@ -289,8 +310,9 @@
 
     // 定時更新
     setInterval(function () {
+		
 		//ajax取relay狀態
-		var relay1_state,relay2_state,relay3_state,relay4_state,relay5_state;
+		var relay1_state, relay2_state, relay3_state, relay4_state, relay5_state;
 		$.ajax({
     		type: "GET",
     		url: "data/relay.txt",
@@ -303,16 +325,16 @@
 				relay5_state = parseInt(relay.relay5);
 				relay6_state = parseInt(relay.relay6);
 
-				if(relay1_state == 1){honeySwitch.showOn("#relay1");}else{honeySwitch.showOff("#relay1");}
-				if(relay2_state == 1){honeySwitch.showOn("#relay2");}else{honeySwitch.showOff("#relay2");}
-				if(relay3_state == 1){honeySwitch.showOn("#relay3");}else{honeySwitch.showOff("#relay3");}
-				if(relay4_state == 1){honeySwitch.showOn("#relay4");}else{honeySwitch.showOff("#relay4");}
-				if(relay5_state == 1){honeySwitch.showOn("#relay5");}else{honeySwitch.showOff("#relay5");}
-				if(relay6_state == 1){honeySwitch.showOn("#relay6");}else{honeySwitch.showOff("#relay6");}
+				if(relay1_state == 1) { honeySwitch.showOn("#relay1"); } else { honeySwitch.showOff("#relay1"); }
+				if(relay2_state == 1) { honeySwitch.showOn("#relay2"); } else { honeySwitch.showOff("#relay2"); }
+				if(relay3_state == 1) { honeySwitch.showOn("#relay3"); } else { honeySwitch.showOff("#relay3"); }
+				if(relay4_state == 1) { honeySwitch.showOn("#relay4"); } else { honeySwitch.showOff("#relay4"); }
+				if(relay5_state == 1) { honeySwitch.showOn("#relay5"); } else { honeySwitch.showOff("#relay5"); }
+				if(relay6_state == 1) { honeySwitch.showOn("#relay6"); } else { honeySwitch.showOff("#relay6"); }
 			}
  		 });
 		//ajax讀取thr狀態
-		var h_air,h_air,t_air;heat_air,t_water;
+		var h_air, h_air, t_air, heat_air, t_water;
 		$.ajax({
     		type: "GET",
     		url: "data/thr.txt",
@@ -331,9 +353,8 @@
 			}
  		 });
 		////
-
-
-	}, 1800);
+	
+	}, 2000);
 
 
       //////
@@ -341,12 +362,11 @@
 
 </script>
 
-
 </head>
 
-<body>
+
 <?php
-//讀取目前資料
+/*//讀取目前資料
 $thr_file = file_get_contents("data/thr.txt"); //溫溼度
 $relay_file = file_get_contents("data/relay.txt"); //開關狀態
 //Json解碼
@@ -368,30 +388,34 @@ $relay6_state = $relay_json['relay6'];
 //回報所有值(測試用)
 echo $relay1_state, $relay2_state, $relay3_state, $relay4_state, $relay5_state, $relay6_state . '<br/>';
 echo $h_air, $t_air, $heat_air, $t_water, $datetime;
-
+*/
 ?>
 
+  <div id="Header">智慧魚缸監控與自動化控制系統</div>
+  <div id="Sidebar">Sidebar</div>
+  <div id="Content">  
+   	<div id="Thr">
+		<div id="h_air" style="width:25%; height:100%; float: left"></div>
+		<div id="t_air" style="width:25%; height:100%; float: left"></div>
+		<div id="heat_air" style="width:25%; height:100%; float: left"></div>	
+		<div id="t_water" style="width:25%; height:100%; float: left"></div>
+
+  	</div>
+
+  	<div id="Relay">
+  		<div style="float:left"><p>電器一號：</p><span class="switch-off" themeColor="gold" id="relay1"></span></div>
+  		<div style="float:left"><p>電器二號：</p><span class="switch-off" themeColor="gold" id="relay2"></span></div>
+  		<div style="float:left"><p>電器三號：</p><span class="switch-off" themeColor="gold" id="relay3"></span></div>
+    	<div style="float:left"><p>電器四號：</p><span class="switch-off" themeColor="gold" id="relay4"></span></div>
+    	<div style="float:left"><p>電器五號：</p><span class="switch-off" themeColor="gold" id="relay5"></span></div>
+    	<div style="float:left"><p>電器六號：</p><span class="switch-off" themeColor="gold" id="relay6"></span></div>
+  	</div>
 
 
-  <h2>測試頁面</h2>
-
-  <div id="1" style="width: 800px; height: 200px; margin: 0 auto">
-    <div id="h_air" style="width: 200px; height: 200px; float: left"></div>
-	<div id="t_air" style="width: 200px; height: 200px; float: left"></div>
-	<div id="heat_air" style="width: 200px; height: 200px; float: left"></div>
-	<div id="t_water" style="width: 200px; height: 200px; float: left"></div>
+  
   </div>
-
-  <div id="2" style="width: 500px; height: 100px; margin: 0 auto">
-  	<div style="float:left"><p>電器一號：</p><span class="switch-off" themeColor="gold" id="relay1"></span></div>
-  	<div style="float:left"><p>電器二號：</p><span class="switch-off" themeColor="gold" id="relay2"></span></div>
-  	<div style="float:left"><p>電器三號：</p><span class="switch-off" themeColor="gold" id="relay3"></span></div>
-    <div style="float:left"><p>電器四號：</p><span class="switch-off" themeColor="gold" id="relay4"></span></div>
-    <div style="float:left"><p>電器五號：</p><span class="switch-off" themeColor="gold" id="relay5"></span></div>
-    <div style="float:left"><p>電器六號：</p><span class="switch-off" themeColor="gold" id="relay6"></span></div>
-  </div>
-
-
+  <div style='clear:both;'></div>
+  
 
 
 
