@@ -1,0 +1,1 @@
+{"h_air":"61.90","t_air":"29.40","heat_air":"32.06","t_water":"-127.00","datetime":"2018-06-17 05:36:43","relay1":"0","relay2":"0","relay3":"1","relay4":"1","relay5":"0","relay6":"0"}

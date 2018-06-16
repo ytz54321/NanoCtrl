@@ -12,130 +12,24 @@
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/solid-gauge.js"></script>
   <script type="text/javascript" src="js/honeySwitch.js"></script>
-
   
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      //判斷當開關作動時要做的事情
-	  //relay1	
-	  switchEvent("#relay1",
-	  function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay1: "1"},
-			  success: function(){
-				  honeySwitch.showOn("#relay1");
-				  }});},
-	  function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay1: "0"},
-				success: function(){
-					honeySwitch.showOff("#relay1");
-					}});}
-		);
-	  //relay2
-	  switchEvent("#relay2",
-	  function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay2: "1"},
-			  success: function(){
-				  honeySwitch.showOn("#relay2");
-				  }});},
-	  function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay2: "0"},
-				success: function(){
-					honeySwitch.showOff("#relay2");
-					}});}
-		);
-		//relay3
-		switchEvent("#relay3",
-	  	function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay3: "1"},
-			  success: function(){
-				  honeySwitch.showOn("#relay3");
-				  }});},
-	  	function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay3: "0"},
-				success: function(){
-					honeySwitch.showOff("#relay3");
-					}});}
-		);
-		//relay4
-		switchEvent("#relay4",
-	  	function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay4: "1"},
-			  success: function(){
-				  honeySwitch.showOn("#relay4");
-				  }});},
-	  	function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay4: "0"},
-				success: function(){
-					
-					}});}
-		);
-		//relay5
-		switchEvent("#relay5",
-	  	function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay5: "1"},
-			  success: function(){
-				  
-				  }});},
-	  	function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay5: "0"},
-				success: function(){
-					
-					}});}
-		);
-		//relay6
-		switchEvent("#relay6",
-	  	function(){
-		  $.ajax({
-			  type: "GET",
-			  url: "GetData_relay.php",
-			  data: {relay6: "1"},
-			  success: function(){
-				  
-				  }});},
-	  	function(){
-			$.ajax({
-				type: "GET",
-				url: "GetData_relay.php",
-				data: {relay6: "0"},
-				success: function(){
-					
-					}});}
-		);
-	  
 
+  <script type="text/javascript">
+    //旗標F
+	F = 1;
+	
+	$(document).ready(function () {
+		
+      //判斷當開關作動時要做的事情
+	  switchEvent("#relay1",function(){relay_change(1,1);},function(){relay_change(1,0);});
+	  switchEvent("#relay2",function(){relay_change(2,1);},function(){relay_change(2,0);});
+	  switchEvent("#relay3",function(){relay_change(3,1);},function(){relay_change(3,0);});
+	  switchEvent("#relay4",function(){relay_change(4,1);},function(){relay_change(4,0);});
+	  switchEvent("#relay5",function(){relay_change(5,1);},function(){relay_change(5,0);});
+	  switchEvent("#relay6",function(){relay_change(6,1);},function(){relay_change(6,0);});
 
 
 	  Highcharts.setOptions({
@@ -146,7 +40,7 @@
 		    title: null,
 		    pane: {
 			  	center: ['50%', '85%'],
-				  size: '100%',
+				  size: '145%',
 				  startAngle: -90,
 			  	  endAngle: 90,
 			  	background: {
@@ -182,22 +76,22 @@
 						y: 5,
 						borderWidth: 0,
 						useHTML: true
-						
+
 					}
 				}
 		  }
-    });
-    //空氣濕度
-    var chart1 = Highcharts.chart('h_air', { 
+      });
+      //空氣濕度
+      var chart1 = Highcharts.chart('h_air', {
 		  yAxis: {
 				min: 0,
 				max: 100,
 				title: {
-					text: '空氣濕度',
+					text: null,
 					style:{
 						fontSize:'25px',
 						color:'#ffffff'
-					}					
+					}
 				}
 		  },
 		  credits: {
@@ -209,21 +103,21 @@
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
 					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
-					'<span style="font-size:10px;color:silver">%</span></div>'
+					'<span style="font-size:10px;color:black">%</span></div>'
 				},
 				tooltip: {
-						valueSuffix: ' %'
+						valueSuffix: ' %'			
 				}
 		  }]
-    });
+      });
 
-    //空氣溫度
-	var chart2 = Highcharts.chart('t_air', {
+      //空氣溫度
+	  var chart2 = Highcharts.chart('t_air', {
 		  yAxis: {
 				min: 20,
 				max: 40,
 				title: {
-					text: '空氣溫度',
+					text: null,
 					style:{
 						fontSize:'25px',
 						color:'#ffffff'
@@ -239,21 +133,21 @@
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
 					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
-					'<span style="font-size:10px;color:silver">度</span></div>'
+					'<span style="font-size:10px;color:black">度</span></div>'
 				},
 				tooltip: {
 						valueSuffix: '度'
 				}
 		  }]
-    });
+      });
 
-   //體感溫度
-	var chart3 = Highcharts.chart('heat_air', {
+      //體感溫度
+	  var chart3 = Highcharts.chart('heat_air', {
 		  yAxis: {
 				min: 20,
 				max: 40,
 				title: {
-					text: '體感溫度',
+					text: null,
 					style:{
 						fontSize:'25px',
 						color:'#ffffff'
@@ -269,22 +163,22 @@
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
 					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
-					'<span style="font-size:10px;color:silver">度</span></div>'
+					'<span style="font-size:10px;color:black">度</span></div>'
 				},
 				tooltip: {
 						valueSuffix: '度'
 				}
 		  }]
-    });
+      });
 
-   //水中溫度
-	var chart4 = Highcharts.chart('t_water', {
+      //水中溫度
+	  var chart4 = Highcharts.chart('t_water', {
 		  yAxis: {
 				min: 20,
 				max: 40,
-				
+
 				title: {
-					text: '水中溫度',
+					text: null,
 					style:{
 						fontSize:'25px',
 						color:'#ffffff'
@@ -300,62 +194,68 @@
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:20px;color:' +
 					((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'blue') + '">{y}</span><br/>' +
-					'<span style="font-size:10px;color:silver">度</span></div>'
+					'<span style="font-size:10px;color:black">度</span></div>'
 				},
 				tooltip: {
 						valueSuffix: '度'
 				}
 		  }]
-    });
+      });
 
-    // 定時更新
-    setInterval(function () {
+      // 定時更新
+      setInterval(function () {
+
+		//ajax取資料狀態
+		var h_air, h_air, t_air, heat_air, t_water, relay1_state, relay2_state, relay3_state, relay4_state, relay5_state;
+		if(F==1){
+			$.ajax({
+    			type: "GET",
+    			url: "data/data.txt",
+				dataType:"json",
+    			success: function(data){
+					var point;
+					h_air = parseFloat(data.h_air);
+		    		t_air = parseFloat(data.t_air);
+					heat_air = parseFloat(data.heat_air);
+					t_water = parseFloat(data.t_water);
+					datatime = data.datetime;
+
+					if (chart1) {point = chart1.series[0].points[0];point.update(h_air);}
+					if (chart2) {point = chart2.series[0].points[0];point.update(t_air);}
+					if (chart3) {point = chart3.series[0].points[0];point.update(heat_air);}
+					if (chart4) {point = chart4.series[0].points[0];point.update(t_water);}
+
+					relay1_state = parseInt(data.relay1);
+					relay2_state = parseInt(data.relay2);
+					relay3_state = parseInt(data.relay3);
+					relay4_state = parseInt(data.relay4);
+					relay5_state = parseInt(data.relay5);
+					relay6_state = parseInt(data.relay6);
+
+					if(relay1_state == 1) { honeySwitch.showOn("#relay1"); } else { honeySwitch.showOff("#relay1"); }
+					if(relay2_state == 1) { honeySwitch.showOn("#relay2"); } else { honeySwitch.showOff("#relay2"); }
+					if(relay3_state == 1) { honeySwitch.showOn("#relay3"); } else { honeySwitch.showOff("#relay3"); }
+					if(relay4_state == 1) { honeySwitch.showOn("#relay4"); } else { honeySwitch.showOff("#relay4"); }
+					if(relay5_state == 1) { honeySwitch.showOn("#relay5"); } else { honeySwitch.showOff("#relay5"); }
+					if(relay6_state == 1) { honeySwitch.showOn("#relay6"); } else { honeySwitch.showOff("#relay6"); }
+					$("#time").text(datatime);
+				}
+			});
+		}	
 		
-		//ajax取relay狀態
-		var relay1_state, relay2_state, relay3_state, relay4_state, relay5_state;
-		$.ajax({
-    		type: "GET",
-    		url: "data/relay.txt",
-			dataType:"json",
-    		success: function(relay){
-				relay1_state = parseInt(relay.relay1);
-				relay2_state = parseInt(relay.relay2);
-				relay3_state = parseInt(relay.relay3);
-				relay4_state = parseInt(relay.relay4);
-				relay5_state = parseInt(relay.relay5);
-				relay6_state = parseInt(relay.relay6);
-
-				if(relay1_state == 1) { honeySwitch.showOn("#relay1"); } else { honeySwitch.showOff("#relay1"); }
-				if(relay2_state == 1) { honeySwitch.showOn("#relay2"); } else { honeySwitch.showOff("#relay2"); }
-				if(relay3_state == 1) { honeySwitch.showOn("#relay3"); } else { honeySwitch.showOff("#relay3"); }
-				if(relay4_state == 1) { honeySwitch.showOn("#relay4"); } else { honeySwitch.showOff("#relay4"); }
-				if(relay5_state == 1) { honeySwitch.showOn("#relay5"); } else { honeySwitch.showOff("#relay5"); }
-				if(relay6_state == 1) { honeySwitch.showOn("#relay6"); } else { honeySwitch.showOff("#relay6"); }
-			}
- 		 });
-		//ajax讀取thr狀態
-		var h_air, h_air, t_air, heat_air, t_water;
-		$.ajax({
-    		type: "GET",
-    		url: "data/thr.txt",
-			dataType:"json",
-    		success: function(thr){
-				var point;
-				h_air = parseFloat(thr.h_air);
-		    	t_air = parseFloat(thr.t_air);
-				heat_air = parseFloat(thr.heat_air);
-				t_water = parseFloat(thr.t_water);
-
-				if (chart1) {point = chart1.series[0].points[0];point.update(h_air);}
-				if (chart2) {point = chart2.series[0].points[0];point.update(t_air);}
-				if (chart3) {point = chart3.series[0].points[0];point.update(heat_air);}
-				if (chart4) {point = chart4.series[0].points[0];point.update(t_water);}
-			}
- 		 });
+		
 		////
-	
-	}, 2000);
 
+	  }, 1000);
+
+	  function relay_change(r,s){
+		if(r==1){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay1:s}});}
+		else if(r==2){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay2:s}});}
+		else if(r==3){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay3:s}});}
+		else if(r==4){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay4:s}});}
+		else if(r==5){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay5:s}});}
+		else if(r==6){$.ajax({type: "GET",url: "GetData.php?upload&",data: {relay6:s}});}
+	  }
 
       //////
 });
@@ -364,42 +264,37 @@
 
 </head>
 
-
-<?php
-/*//讀取目前資料
-$thr_file = file_get_contents("data/thr.txt"); //溫溼度
-$relay_file = file_get_contents("data/relay.txt"); //開關狀態
-//Json解碼
-$thr_json = json_decode($thr_file, true);
-$relay_json = json_decode($relay_file, true);
-//溫溼度變數定義
-$h_air = $thr_json['h_air'];
-$t_air = $thr_json['t_air'];
-$heat_air = $thr_json['heat_air'];
-$t_water = $thr_json['t_water'];
-$datetime = $thr_json['datetime'];
-//開關變數定義
-$relay1_state = $relay_json['relay1'];
-$relay2_state = $relay_json['relay2'];
-$relay3_state = $relay_json['relay3'];
-$relay4_state = $relay_json['relay4'];
-$relay5_state = $relay_json['relay5'];
-$relay6_state = $relay_json['relay6'];
-//回報所有值(測試用)
-echo $relay1_state, $relay2_state, $relay3_state, $relay4_state, $relay5_state, $relay6_state . '<br/>';
-echo $h_air, $t_air, $heat_air, $t_water, $datetime;
-*/
-?>
-
+<body>
   <div id="Header">智慧魚缸監控與自動化控制系統</div>
-  <div id="Sidebar">Sidebar</div>
-  <div id="Content">  
+  <div id="Sidebar">
+	<div id="button">房間</div>
+	
+	<div id="button">客廳</div>
+	
+  
+  </div>
+  <div id="Content">
    	<div id="Thr">
-		<div id="h_air" style="width:25%; height:100%; float: left"></div>
-		<div id="t_air" style="width:25%; height:100%; float: left"></div>
-		<div id="heat_air" style="width:25%; height:100%; float: left"></div>	
-		<div id="t_water" style="width:25%; height:100%; float: left"></div>
-
+		<div id="constom">
+			<div id="block">
+				<div id="thr_textbox" style="background-color:#ffffff90;border-top-left-radius:10px;">空氣濕度</div>
+				<div id="h_air" style="width:100%; height:80%;float: left; background-color:#dddddd90;border-bottom-left-radius:10px; "></div>
+			</div>
+			<div id="block">
+				<div id="thr_textbox" style="background-color:#eeeeee90;">空氣溫度</div>
+				<div id="t_air" style="width:100%; height:80%; float: left; background-color:#bbbbbb90;"></div>
+			</div>
+			<div id="block">
+				<div id="thr_textbox"style="background-color:#ffffff90;">體感溫度</div>
+				<div id="heat_air" style="width:100%; height:80%; float: left background-color:#dddddd90;" ></div>
+			</div>
+			<div id="block">
+				<div id="thr_textbox"style="background-color:#eeeeee90;">水中溫度</div>
+				<div id="t_water" style="width:100%; height:80%; float: left;background-color:#bbbbbb90;"></div>
+			</div>
+			
+			
+		</div>
   	</div>
 
   	<div id="Relay">
@@ -410,12 +305,47 @@ echo $h_air, $t_air, $heat_air, $t_water, $datetime;
     	<div style="float:left"><p>電器五號：</p><span class="switch-off" themeColor="gold" id="relay5"></span></div>
     	<div style="float:left"><p>電器六號：</p><span class="switch-off" themeColor="gold" id="relay6"></span></div>
   	</div>
+	
+	
+	
+	<div>
+		
+	</div>
+
+	
+	<div id="bottom">
+	<a>開關狀態: </a><a id="F">顯示在這</a><a>    繼電器接收狀態:</a><a id="d">顯示於這</a><a>資料時間:</a><a id="time">顯示時間在此</a>
+	<?php
+			//讀取目前資料
+			$file = file_get_contents("data/data.txt"); //資料
+			
+			//Json解碼
+			$json = json_decode($file, true);
+			
+			//溫溼度變數定義
+			$h_air = $json['h_air'];
+			$t_air = $json['t_air'];
+			$heat_air = $json['heat_air'];
+			$t_water = $json['t_water'];
+			$datetime = $json['datetime'];
+			//開關變數定義
+			$relay1_state = $json['relay1'];
+			$relay2_state = $json['relay2'];
+			$relay3_state = $json['relay3'];
+			$relay4_state = $json['relay4'];
+			$relay5_state = $json['relay5'];
+			$relay6_state = $json['relay6'];
+			//回報所有值(測試用)
+			echo $relay1_state, $relay2_state, $relay3_state, $relay4_state, $relay5_state, $relay6_state . '<br/>';
+			echo $h_air, $t_air, $heat_air, $t_water, $datetime;
+ 		?>
+	</div>
 
 
-  
+
   </div>
   <div style='clear:both;'></div>
-  
+
 
 
 

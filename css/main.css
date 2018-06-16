@@ -2,6 +2,7 @@ body {
   background-image:url('img/background.jpg');
   background-repeat:repeat-x;
   background-size:cover;
+  padding: 10px;
 }
 
 #Header{
@@ -9,7 +10,7 @@ body {
   height:10%;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
-  font-size:15px;
+  font-size:40px;
   color:#fffaf3;
   font-weight:bold;
   background-color:#1f1a1ada;
@@ -23,9 +24,10 @@ body {
     float:left;
     text-align:center;
     font-size:15px;
-    color:#ffffff;
+    color:#000000;
     font-weight:bold;
     background-color:#ffffff;
+    
   }
 
 #Content{
@@ -34,16 +36,17 @@ body {
   float:right;
   font-size:15px;
   font-weight:bold;
-  background-color:#ffffff52;
+  background-color:#ffffff2a;
   margin:0px auto;
-  
+  position:relative;
 }
 
 #Thr{
   width: 100%;
   height: 200px;
   margin: 0 auto;
-  background-color:#9191915b;
+  padding-top: 10px;
+  background-color:#91919193;
 }
 
 #Relay{
@@ -52,3 +55,52 @@ body {
   margin: 0 auto;
 }
 
+#button{
+  width: 80%;
+  height: 50px;
+  margin:0 auto;
+  text-align:center;
+  line-height:50px;
+  margin-bottom: 10px;
+  font-size:200%;
+  background-color:#5c04045b;
+  border-radius:10px;
+}
+
+#constom{
+  
+  width:96%; 
+  height:90%; 
+  background-color:#ffffff96; 
+  border-radius:10px;
+  
+  margin:0 auto;
+
+}
+
+#block{
+  width:25%;
+  height:100%;
+  float: left;
+  margin:0 auto;
+
+}
+
+#thr_textbox{
+  width:100%;
+  height:20%;
+  text-align:center;
+  font-size:30px;
+  float: left;
+  margin:0 auto;
+  
+}
+
+#bottom{
+  width:100%;
+  height:5%;
+  float: left;
+  position:absolute;
+  bottom: 0px;
+  background-color:#bbbbbb90
+}

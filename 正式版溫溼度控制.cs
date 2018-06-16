@@ -82,16 +82,10 @@ void setup() {
 ////////////////////////////////////
 
 void loop() {
-  //ArduinoOTA.handle();
-  //if(cont){
+  
   THR();
-  UPNET_NAS();
-  cont = 0;
-  //}else{
-  delay(100);
-  RelayGET();
+  TRNAS();
   RelayOUT();
-  //}
   delay(5000);
 }
 
@@ -115,9 +109,9 @@ void THR(){
   Serial.print("  Water_Temp:");
   Serial.print(t_water);
   Serial.println("*C");
-  }
+}
 
-void UPNET_NAS(){
+/*void UPNET_NAS(){
   /////////////HOST1/////////////
   Serial.print("Upload_THR:");
   Serial.println(host1);
@@ -147,8 +141,8 @@ void UPNET_NAS(){
   client.stop();
   ////////////////////////////////
 }
-
-void RelayGET(){
+*/
+/*void RelayGET(){
   Serial.print("GET_Relay:");
   Serial.println(host3);
   //連線至HOST3
@@ -156,28 +150,86 @@ void RelayGET(){
     Serial.println("connect Fail");
     return;
   }
-  http.begin("http://59.127.204.180/THRR/PushData_relay.php");
+
+  String url = "GetData.php?";
+  url += "h_air=";
+  url += h_air;
+  url += "&t_air=";
+  url += t_air;
+  url += "&heat_air=";
+  url += hic_air;
+  url += "&t_water=";
+  url += t_water;
+
+  http.begin("http://59.127.204.180/THRR", 80 , url);
   if(http.GET() == 200){//如果網頁回應200代表正常
-  DynamicJsonBuffer jsonBuffer(69);//設定json的緩衝區
-  JsonObject& root = jsonBuffer.parseObject(http.getString());//設定緩衝區資料來源
-  Serial.print("GET:");
-  relay1=root["relay1"]; //變數relay1=讀取json的relay1值
-  relay2=root["relay2"];
-  relay3=root["relay3"];
-  relay4=root["relay4"];
-  relay5=root["relay5"];
-  relay6=root["relay6"];
-  Serial.print("relay1_state=");Serial.println(relay1);
-  Serial.print("relay2_state=");Serial.println(relay2);
-  Serial.print("relay3_state=");Serial.println(relay3);
-  Serial.print("relay4_state=");Serial.println(relay4);
-  Serial.print("relay5_state=");Serial.println(relay5);
-  Serial.print("relay6_state=");Serial.println(relay6);
+    DynamicJsonBuffer jsonBuffer(69);//設定json的緩衝區
+    JsonObject& root = jsonBuffer.parseObject(http.getString());//設定緩衝區資料來源
+    Serial.print("GET:");
+    relay1=root["relay1"]; //變數relay1=讀取json的relay1值
+    relay2=root["relay2"];
+    relay3=root["relay3"];
+    relay4=root["relay4"];
+    relay5=root["relay5"];
+    relay6=root["relay6"];
+    Serial.print("relay1_state=");Serial.println(relay1);
+    Serial.print("relay2_state=");Serial.println(relay2);
+    Serial.print("relay3_state=");Serial.println(relay3);
+    Serial.print("relay4_state=");Serial.println(relay4);
+    Serial.print("relay5_state=");Serial.println(relay5);
+    Serial.print("relay6_state=");Serial.println(relay6);
   }else{
     Serial.println("GetError");
   }
-         
- }
+}       
+*/
+ 
+ 
+ 
+ 
+ void TRNAS(){
+  Serial.print("TRNAS:");
+  Serial.println(host3);
+  if (!client.connect(host3, httpPort)) {
+    Serial.println("connect Fail");
+    return;
+  }
+
+  String url = "http://59.127.204.180/THRR/GetData.php?upload=1";
+  url += "&h_air=";
+  url += h_air;
+  url += "&t_air=";
+  url += t_air;
+  url += "&heat_air=";
+  url += hic_air;
+  url += "&t_water=";
+  url += t_water;
+
+  http.begin(url);
+  if(http.GET() == 200){//如果網頁回應200代表正常
+    DynamicJsonBuffer jsonBuffer(69);//設定json的緩衝區
+    JsonObject& root = jsonBuffer.parseObject(http.getString());//設定緩衝區資料來源
+    Serial.print("GET:");
+    relay1=root["relay1"]; //變數relay1=讀取json的relay1值
+    relay2=root["relay2"];
+    relay3=root["relay3"];
+    relay4=root["relay4"];
+    relay5=root["relay5"];
+    relay6=root["relay6"];
+    Serial.print("relay1_state=");Serial.println(relay1);
+    Serial.print("relay2_state=");Serial.println(relay2);
+    Serial.print("relay3_state=");Serial.println(relay3);
+    Serial.print("relay4_state=");Serial.println(relay4);
+    Serial.print("relay5_state=");Serial.println(relay5);
+    Serial.print("relay6_state=");Serial.println(relay6);
+  }else{
+    Serial.println("GetError");
+  }
+
+}
+
+
+ 
  
  void RelayOUT(){
 	 digitalWrite(D1,relay1);
