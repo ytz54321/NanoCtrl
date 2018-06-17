@@ -47,12 +47,13 @@ void setup() {
   //ArduinoOTA.setPassword((const char *)"0101");
   //ArduinoOTA.begin();
   //定義腳位功能
+  pinMode(D0,OUTPUT);
   pinMode(D1,OUTPUT);	
   pinMode(D4,OUTPUT);
   pinMode(D5,OUTPUT);
   pinMode(D6,OUTPUT);
   pinMode(D7,OUTPUT);
-  pinMode(D8,OUTPUT);
+  
   Serial.begin(115200);
   sensors.begin();
   dht.begin();
@@ -225,17 +226,17 @@ void THR(){
   }else{
     Serial.println("GetError");
   }
-
+  http.end();
 }
 
 
  
  
  void RelayOUT(){
-	 digitalWrite(D1,relay1);
-	 digitalWrite(D4,relay2);
-	 digitalWrite(D5,relay3);
-	 digitalWrite(D6,relay4);
-	 digitalWrite(D7,relay5);
-	 digitalWrite(D8,relay6);
+	 digitalWrite(D0,relay1);
+	 digitalWrite(D1,relay2);
+	 digitalWrite(D4,relay3);
+	 digitalWrite(D5,relay4);
+	 digitalWrite(D6,relay5);
+	 digitalWrite(D7,relay6);
  }

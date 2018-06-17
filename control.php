@@ -213,7 +213,7 @@
     			success: function(data){
 					var point;
 					h_air = parseFloat(data.h_air);
-		    		t_air = parseFloat(data.t_air);
+					t_air = parseFloat(data.t_air);
 					heat_air = parseFloat(data.heat_air);
 					t_water = parseFloat(data.t_water);
 					datatime = data.datetime;
@@ -307,15 +307,83 @@
 			
 		</div>
   	</div>
-
+  
   	<div id="Relay">
-  		<div style="float:left"><p>電器一號：</p><span class="switch-off" themeColor="gold" id="relay1"></span></div>
-  		<div style="float:left"><p>電器二號：</p><span class="switch-off" themeColor="gold" id="relay2"></span></div>
-  		<div style="float:left"><p>電器三號：</p><span class="switch-off" themeColor="gold" id="relay3"></span></div>
-    	<div style="float:left"><p>電器四號：</p><span class="switch-off" themeColor="gold" id="relay4"></span></div>
-    	<div style="float:left"><p>電器五號：</p><span class="switch-off" themeColor="gold" id="relay5"></span></div>
-    	<div style="float:left"><p>電器六號：</p><span class="switch-off" themeColor="gold" id="relay6"></span></div>
+  		<div id="Relay_box">
+			<div id="Relay_box_title">
+				一號燈具
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">5W白+藍光</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay1" style="margin-top:10px;zoom: 2;">
+			
+			</div>
+		</div>
+
+		<div id="Relay_box">
+			<div id="Relay_box_title">
+				二號燈具
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">3W紅+白+藍</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay2" style="margin-top:10px;zoom: 2;">
+			</div>
+		</div>
+
+		<div id="Relay_box">
+			<div id="Relay_box_title">
+				降溫風扇
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">幫助水面降溫</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay3" style="margin-top:10px;zoom: 2;">
+			</div>
+		</div>
+
+		<div id="Relay_box">
+			<div id="Relay_box_title">
+				加溫棒
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">冬天加熱用</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay4" style="margin-top:10px;zoom: 2;">
+			</div>
+		</div>
+
+		<div id="Relay_box">
+			<div id="Relay_box_title">
+				打氣幫浦
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">幫助水中溶氧</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay5" style="margin-top:10px;zoom: 2;">
+			</div>
+		</div>
+
+		<div id="Relay_box">
+			<div id="Relay_box_title">
+				環境照明
+			</div>
+			<div id="Relay_box_switch">
+			</br>			
+			<font size="4">提供周圍光明</font>
+			</br>
+			<span class="switch-off" themeColor="gold" id="relay6" style="margin-top:10px;zoom: 2;">
+			</div>
+		</div>
+		
   	</div>
+  
 	
 	
 	
