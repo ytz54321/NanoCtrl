@@ -18,9 +18,7 @@
 
 
   <script type="text/javascript">
-    //旗標F
-	F = 1;
-	
+    
 	$(document).ready(function () {
 		
       //判斷當開關作動時要做的事情
@@ -207,7 +205,7 @@
 
 		//ajax取資料狀態
 		var h_air, h_air, t_air, heat_air, t_water, relay1_state, relay2_state, relay3_state, relay4_state, relay5_state;
-		if(F==1){
+		
 			$.ajax({
     			type: "GET",
     			url: "data/data.txt",
@@ -241,7 +239,7 @@
 					$("#time").text(datatime);
 				}
 			});
-		}	
+		
 		
 		
 		////
@@ -264,8 +262,19 @@
 
 </head>
 
-<body>
-  <div id="Header">智慧魚缸監控與自動化控制系統</div>
+<body style="font-family: Microsoft JhengHei;">
+  <div id="Header">
+  	<div id="Tittle">
+		  <div id="img" style="width:13%; height:95%; background-image:url('img/icon.png');float: left;background-size:contain;background-repeat:no-repeat"></div>
+		  <div id="tittle_text" style="width:80%; height:100%; margin-top:1.4%; margin-bottom:1%; margin-left:16%; position:absolute;float: left; ">智慧魚缸監控與自動化控制系統</div>
+	</div>
+  
+  
+  
+  
+  </div>
+  
+  
   <div id="Sidebar">
 	<div id="button">房間</div>
 	
@@ -273,6 +282,8 @@
 	
   
   </div>
+  
+  
   <div id="Content">
    	<div id="Thr">
 		<div id="constom">
@@ -289,8 +300,8 @@
 				<div id="heat_air" style="width:100%; height:80%; float: left background-color:#dddddd90;" ></div>
 			</div>
 			<div id="block">
-				<div id="thr_textbox"style="background-color:#eeeeee90;">水中溫度</div>
-				<div id="t_water" style="width:100%; height:80%; float: left;background-color:#bbbbbb90;"></div>
+				<div id="thr_textbox"style="background-color:#eeeeee90;border-top-right-radius:10px;">水中溫度</div>
+				<div id="t_water" style="width:100%; height:80%; float: left;background-color:#bbbbbb90;border-bottom-right-radius:10px;"></div>
 			</div>
 			
 			
