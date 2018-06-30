@@ -1,0 +1,113 @@
+  html {
+  margin: 0;
+  padding: 0;
+  background: #d9d9d9;
+  }
+
+  body {
+    
+    
+  }
+  
+  .page {
+		width: 600px;
+		margin: 0 auto;
+		padding: 15px;
+		background: white;
+	}
+
+
+  #Header{
+    width:600px;
+    height:10%;    
+    font-size:85px;
+    color:#fffaf3;
+    font-weight:bold;
+    background-color:#1f1a1ada;
+    margin:0px auto;
+}
+  
+  
+  #Content{
+    width:100%;
+    height:80%;
+    float:right;
+    font-size:15px;
+    font-weight:bold;
+    background-color:#ffffff2a;
+    margin:0px auto;
+    
+  }
+     
+  h1, h2 {
+		margin: 0;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+  
+  .common-row {
+		width: 100%;
+		height: 50px;
+		border-bottom: 1px solid lightgrey;
+	}
+	.cell-left, .cell-right {
+		width: 49%;
+		height: 100%;
+		float: left;
+		line-height: 50px;
+	}
+	.cell-right {
+		text-align: right;
+  }
+
+  .common-row-thr {
+		width: 100%;
+		height: 100px;
+		border-bottom: 1px solid lightgrey;
+	}
+
+  .thr-left, .thr-center-left, .thr-center-right, .thr-right{
+    width: 50%;
+		height: 100%;
+		float: left;
+		line-height: 50px;
+  }
+
+  
+
+
+  
+  .switch-on, .switch-off {
+		margin-top: 9px;
+	}
+	.showBox {
+		width: 100%;
+		border: 1px solid lightgrey;
+		border-radius: 6px;
+		font-size: 16px;
+		background: #CCFF99;
+	}
+	.paragraph {
+		white-space: pre-wrap;
+		margin: 15px 0;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+	textarea {
+		width: 80%;
+		border: none;
+		outline: none;
+		resize: none;
+		font-size: 16px;
+		height: auto;
+		overflow: visible;
+	}
+	.hidden {
+		display: none;
+	}
+	@media screen and (max-width: 800px) {
+		.page {
+			width: 100%;
+			box-sizing: border-box;
+		}
+	}
